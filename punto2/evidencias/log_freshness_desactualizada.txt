@@ -1,0 +1,39 @@
+DAG: examen_ventas | Tarea: comprobar_freshness | Run ID: manual__2026-11-12T12:36:49.862097+00:00 | Intento 1
+(Log de la tarea copiado de la interfaz de Airflow)
+
+[2026-11-12, 12:36:52 UTC] {local_task_job_runner.py:123} ▶ Pre task execution logs
+[2026-11-12, 12:36:52 UTC] {logging_mixin.py:190} INFO - INICIO dbt ['source', 'freshness']
+[2026-11-12, 12:36:55 UTC] {taskinstance.py:3313} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 768, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 734, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/workspace/scripts/runtime.py", line 20, in run_dbt
+    subprocess.run(["/opt/dbt/bin/dbt", *arguments, "--project-dir", "/workspace/dbt",
+  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/opt/dbt/bin/dbt', 'source', 'freshness', '--project-dir', '/workspace/dbt', '--profiles-dir', '/workspace/dbt']' returned non-zero exit status 1.
+[2026-11-12, 12:36:55 UTC] {taskinstance.py:1226} INFO - Marking task as FAILED. dag_id=examen_ventas, task_id=comprobar_freshness, run_id=manual__2026-11-12T12:36:49.862097+00:00, execution_date=20261112T123649, start_date=20261112T123652, end_date=20261112T123655
+[2026-11-12, 12:36:55 UTC] {taskinstance.py:341} ▶ Post task execution logs
+
+------------------------------------------------------------------------------
+Motivo del error (target/sources.json de esa misma ejecución, ver artifacts_desactualizada.txt):
+  generated_at               : 2026-11-12T12:36:54Z  (dentro de la tarea, 12:36:52 a 12:36:55)
+  source                     : ventas_raw.ventas
+  status                     : error
+  max_loaded_at              : 2026-11-11T06:36:31Z
+  snapshotted_at             : 2026-11-12T12:36:54Z
+  max_loaded_at_time_ago_in_s: 108023  (≈ 30,0 horas)
+  criteria                   : warn_after 12 hour, error_after 24 hour
+  => 30,0 h > 24 h: dbt source freshness termina con código 1 y la tarea falla.
