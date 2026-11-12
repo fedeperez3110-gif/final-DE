@@ -1,0 +1,7 @@
+fecha,id_envio,ciudad,transportadora,estado,duracion_minutos,archivo_s3
+2026-10-03,ENV-013,Bogota,RutaNorte,entregado,15,s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/fecha=2026-10-03/entregas.csv
+2026-10-03,ENV-014,Bogota,RutaSur,destinatario_ausente,0,s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/fecha=2026-10-03/entregas.csv
+2026-10-03,ENV-015,Bogota,RutaNorte,destinatario_ausente,0,s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/fecha=2026-10-03/entregas.csv
+2026-10-03,ENV-016,Medellin,RutaSur,entregado,45,s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/fecha=2026-10-03/entregas.csv
+2026-10-03,ENV-017,Medellin,RutaNorte,destinatario_ausente,0,s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/fecha=2026-10-03/entregas.csv
+2026-10-03,ENV-018,Medellin,RutaSur,direccion_incorrecta,0,s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/fecha=2026-10-03/entregas.csv

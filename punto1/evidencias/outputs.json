@@ -1,0 +1,47 @@
+{
+  "base_datos": {
+    "sensitive": false,
+    "type": "string",
+    "value": "examen_entregas"
+  },
+  "bucket": {
+    "sensitive": false,
+    "type": "string",
+    "value": "fp-examen-p1-entregas-XXXXXXXXXXXX"
+  },
+  "bucket_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:s3:::fp-examen-p1-entregas-XXXXXXXXXXXX"
+  },
+  "plantilla_ubicacion": {
+    "sensitive": false,
+    "type": "string",
+    "value": "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/fecha=${fecha}/"
+  },
+  "region": {
+    "sensitive": false,
+    "type": "string",
+    "value": "us-east-2"
+  },
+  "ruta_entregas": {
+    "sensitive": false,
+    "type": "string",
+    "value": "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/"
+  },
+  "ruta_resultados_athena": {
+    "sensitive": false,
+    "type": "string",
+    "value": "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/resultados-athena/"
+  },
+  "tabla": {
+    "sensitive": false,
+    "type": "string",
+    "value": "entregas"
+  },
+  "workgroup": {
+    "sensitive": false,
+    "type": "string",
+    "value": "fp-examen-p1-wg"
+  }
+}

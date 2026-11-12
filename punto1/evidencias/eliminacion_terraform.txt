@@ -1,0 +1,259 @@
+data.aws_caller_identity.actual: Reading...
+aws_glue_catalog_database.entregas: Refreshing state... [id=XXXXXXXXXXXX:examen_entregas]
+data.aws_caller_identity.actual: Read complete after 0s [id=XXXXXXXXXXXX]
+aws_s3_bucket.datos: Refreshing state... [id=fp-examen-p1-entregas-XXXXXXXXXXXX]
+aws_athena_workgroup.entregas: Refreshing state... [id=fp-examen-p1-wg]
+aws_glue_catalog_table.entregas: Refreshing state... [id=XXXXXXXXXXXX:examen_entregas:entregas]
+aws_s3_bucket_public_access_block.datos: Refreshing state... [id=fp-examen-p1-entregas-XXXXXXXXXXXX]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_athena_workgroup.entregas will be destroyed
+  - resource "aws_athena_workgroup" "entregas" {
+      - arn           = "arn:aws:athena:us-east-2:XXXXXXXXXXXX:workgroup/fp-examen-p1-wg" -> null
+      - description   = "Examen final - punto 1" -> null
+      - force_destroy = true -> null
+      - id            = "fp-examen-p1-wg" -> null
+      - name          = "fp-examen-p1-wg" -> null
+      - region        = "us-east-2" -> null
+      - state         = "ENABLED" -> null
+      - tags          = {} -> null
+      - tags_all      = {
+          - "Proyecto" = "examen-final"
+          - "Punto"    = "1"
+        } -> null
+
+      - configuration {
+          - bytes_scanned_cutoff_per_query          = 0 -> null
+          - enable_minimum_encryption_configuration = false -> null
+          - enforce_workgroup_configuration         = true -> null
+          - publish_cloudwatch_metrics_enabled      = false -> null
+          - requester_pays_enabled                  = false -> null
+            # (1 unchanged attribute hidden)
+
+          - engine_version {
+              - effective_engine_version = "Athena engine version 3" -> null
+              - selected_engine_version  = "AUTO" -> null
+            }
+
+          - result_configuration {
+              - output_location       = "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/resultados-athena/" -> null
+                # (1 unchanged attribute hidden)
+
+              - encryption_configuration {
+                  - encryption_option = "SSE_S3" -> null
+                    # (1 unchanged attribute hidden)
+                }
+            }
+        }
+    }
+
+  # aws_glue_catalog_database.entregas will be destroyed
+  - resource "aws_glue_catalog_database" "entregas" {
+      - arn          = "arn:aws:glue:us-east-2:XXXXXXXXXXXX:database/examen_entregas" -> null
+      - catalog_id   = "XXXXXXXXXXXX" -> null
+      - description  = "Examen final - punto 1: intentos de entrega" -> null
+      - id           = "XXXXXXXXXXXX:examen_entregas" -> null
+      - name         = "examen_entregas" -> null
+      - parameters   = {} -> null
+      - region       = "us-east-2" -> null
+      - tags         = {} -> null
+      - tags_all     = {
+          - "Proyecto" = "examen-final"
+          - "Punto"    = "1"
+        } -> null
+        # (1 unchanged attribute hidden)
+
+      - create_table_default_permission {
+          - permissions = [
+              - "ALL",
+            ] -> null
+
+          - principal {
+              - data_lake_principal_identifier = "IAM_ALLOWED_PRINCIPALS" -> null
+            }
+        }
+    }
+
+  # aws_glue_catalog_table.entregas will be destroyed
+  - resource "aws_glue_catalog_table" "entregas" {
+      - arn                = "arn:aws:glue:us-east-2:XXXXXXXXXXXX:table/examen_entregas/entregas" -> null
+      - catalog_id         = "XXXXXXXXXXXX" -> null
+      - database_name      = "examen_entregas" -> null
+      - description        = "Intentos de entrega, particionados por fecha (partition projection)" -> null
+      - id                 = "XXXXXXXXXXXX:examen_entregas:entregas" -> null
+      - name               = "entregas" -> null
+      - parameters         = {
+          - "EXTERNAL"                       = "TRUE"
+          - "classification"                 = "csv"
+          - "projection.enabled"             = "true"
+          - "projection.fecha.format"        = "yyyy-MM-dd"
+          - "projection.fecha.interval"      = "1"
+          - "projection.fecha.interval.unit" = "DAYS"
+          - "projection.fecha.range"         = "2026-10-01,2026-10-03"
+          - "projection.fecha.type"          = "date"
+          - "skip.header.line.count"         = "1"
+          - "storage.location.template"      = "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/fecha=${fecha}/"
+        } -> null
+      - region             = "us-east-2" -> null
+      - retention          = 0 -> null
+      - table_type         = "EXTERNAL_TABLE" -> null
+        # (3 unchanged attributes hidden)
+
+      - partition_keys {
+          - comment    = "Fecha del archivo (yyyy-MM-dd)" -> null
+          - name       = "fecha" -> null
+          - parameters = {} -> null
+          - type       = "string" -> null
+        }
+
+      - storage_descriptor {
+          - additional_locations      = [] -> null
+          - bucket_columns            = [] -> null
+          - compressed                = false -> null
+          - input_format              = "org.apache.hadoop.mapred.TextInputFormat" -> null
+          - location                  = "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/" -> null
+          - number_of_buckets         = 0 -> null
+          - output_format             = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat" -> null
+          - parameters                = {} -> null
+          - stored_as_sub_directories = false -> null
+
+          - columns {
+              - name       = "id_envio" -> null
+              - parameters = {} -> null
+              - type       = "string" -> null
+                # (1 unchanged attribute hidden)
+            }
+          - columns {
+              - name       = "ciudad" -> null
+              - parameters = {} -> null
+              - type       = "string" -> null
+                # (1 unchanged attribute hidden)
+            }
+          - columns {
+              - name       = "transportadora" -> null
+              - parameters = {} -> null
+              - type       = "string" -> null
+                # (1 unchanged attribute hidden)
+            }
+          - columns {
+              - name       = "estado" -> null
+              - parameters = {} -> null
+              - type       = "string" -> null
+                # (1 unchanged attribute hidden)
+            }
+          - columns {
+              - name       = "duracion_minutos" -> null
+              - parameters = {} -> null
+              - type       = "int" -> null
+                # (1 unchanged attribute hidden)
+            }
+
+          - ser_de_info {
+              - name                  = "csv" -> null
+              - parameters            = {
+                  - "field.delim"          = ","
+                  - "serialization.format" = ","
+                } -> null
+              - serialization_library = "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe" -> null
+            }
+        }
+    }
+
+  # aws_s3_bucket.datos will be destroyed
+  - resource "aws_s3_bucket" "datos" {
+      - arn                         = "arn:aws:s3:::fp-examen-p1-entregas-XXXXXXXXXXXX" -> null
+      - bucket                      = "fp-examen-p1-entregas-XXXXXXXXXXXX" -> null
+      - bucket_domain_name          = "fp-examen-p1-entregas-XXXXXXXXXXXX.s3.amazonaws.com" -> null
+      - bucket_namespace            = "global" -> null
+      - bucket_region               = "us-east-2" -> null
+      - bucket_regional_domain_name = "fp-examen-p1-entregas-XXXXXXXXXXXX.s3.us-east-2.amazonaws.com" -> null
+      - force_destroy               = true -> null
+      - hosted_zone_id              = "Z2O1EMRO9K5GLX" -> null
+      - id                          = "fp-examen-p1-entregas-XXXXXXXXXXXX" -> null
+      - object_lock_enabled         = false -> null
+      - region                      = "us-east-2" -> null
+      - request_payer               = "BucketOwner" -> null
+      - tags                        = {} -> null
+      - tags_all                    = {
+          - "Proyecto" = "examen-final"
+          - "Punto"    = "1"
+        } -> null
+        # (3 unchanged attributes hidden)
+
+      - grant {
+          - id          = "8b7e449227c0eb9c6d0ddd404ef675babd1a61b7e76e566c3336ad340eb8c584" -> null
+          - permissions = [
+              - "FULL_CONTROL",
+            ] -> null
+          - type        = "CanonicalUser" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - server_side_encryption_configuration {
+          - rule {
+              - bucket_key_enabled = false -> null
+
+              - apply_server_side_encryption_by_default {
+                  - sse_algorithm     = "AES256" -> null
+                    # (1 unchanged attribute hidden)
+                }
+            }
+        }
+
+      - versioning {
+          - enabled    = false -> null
+          - mfa_delete = false -> null
+        }
+    }
+
+  # aws_s3_bucket_public_access_block.datos will be destroyed
+  - resource "aws_s3_bucket_public_access_block" "datos" {
+      - block_public_acls       = true -> null
+      - block_public_policy     = true -> null
+      - bucket                  = "fp-examen-p1-entregas-XXXXXXXXXXXX" -> null
+      - id                      = "fp-examen-p1-entregas-XXXXXXXXXXXX" -> null
+      - ignore_public_acls      = true -> null
+      - region                  = "us-east-2" -> null
+      - restrict_public_buckets = true -> null
+    }
+
+Plan: 0 to add, 0 to change, 5 to destroy.
+
+Changes to Outputs:
+  - base_datos             = "examen_entregas" -> null
+  - bucket                 = "fp-examen-p1-entregas-XXXXXXXXXXXX" -> null
+  - bucket_arn             = "arn:aws:s3:::fp-examen-p1-entregas-XXXXXXXXXXXX" -> null
+  - plantilla_ubicacion    = "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/fecha=${fecha}/" -> null
+  - region                 = "us-east-2" -> null
+  - ruta_entregas          = "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/" -> null
+  - ruta_resultados_athena = "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/resultados-athena/" -> null
+  - tabla                  = "entregas" -> null
+  - workgroup              = "fp-examen-p1-wg" -> null
+aws_s3_bucket_public_access_block.datos: Destroying... [id=fp-examen-p1-entregas-XXXXXXXXXXXX]
+aws_athena_workgroup.entregas: Destroying... [id=fp-examen-p1-wg]
+aws_glue_catalog_table.entregas: Destroying... [id=XXXXXXXXXXXX:examen_entregas:entregas]
+aws_athena_workgroup.entregas: Destruction complete after 1s
+aws_glue_catalog_table.entregas: Destruction complete after 1s
+aws_glue_catalog_database.entregas: Destroying... [id=XXXXXXXXXXXX:examen_entregas]
+aws_s3_bucket_public_access_block.datos: Destruction complete after 1s
+aws_s3_bucket.datos: Destroying... [id=fp-examen-p1-entregas-XXXXXXXXXXXX]
+aws_glue_catalog_database.entregas: Destruction complete after 0s
+aws_s3_bucket.datos: Destruction complete after 1s
+
+Destroy complete! Resources: 5 destroyed.
+
+===== Comprobación posterior =====
+
+aws: [ERROR]: An error occurred (404) when calling the HeadBucket operation: Not Found
+
+aws: [ERROR]: An error occurred (EntityNotFoundException) when calling the GetDatabase operation: Database examen_entregas not found.
+
+aws: [ERROR]: An error occurred (InvalidRequestException) when calling the GetWorkGroup operation: WorkGroup is not found.
+
+Additional error details:
+AthenaErrorCode: INVALID_INPUT

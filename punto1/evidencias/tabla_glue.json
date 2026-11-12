@@ -1,0 +1,57 @@
+{
+    "Nombre": "entregas",
+    "Tipo": "EXTERNAL_TABLE",
+    "Columnas": [
+        {
+            "Name": "id_envio",
+            "Type": "string",
+            "Comment": "",
+            "Parameters": {}
+        },
+        {
+            "Name": "ciudad",
+            "Type": "string",
+            "Comment": "",
+            "Parameters": {}
+        },
+        {
+            "Name": "transportadora",
+            "Type": "string",
+            "Comment": "",
+            "Parameters": {}
+        },
+        {
+            "Name": "estado",
+            "Type": "string",
+            "Comment": "",
+            "Parameters": {}
+        },
+        {
+            "Name": "duracion_minutos",
+            "Type": "int",
+            "Comment": "",
+            "Parameters": {}
+        }
+    ],
+    "Particion": [
+        {
+            "Name": "fecha",
+            "Type": "string",
+            "Comment": "Fecha del archivo (yyyy-MM-dd)",
+            "Parameters": {}
+        }
+    ],
+    "Ubicacion": "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/",
+    "Parametros": {
+        "skip.header.line.count": "1",
+        "projection.fecha.format": "yyyy-MM-dd",
+        "projection.fecha.interval.unit": "DAYS",
+        "EXTERNAL": "TRUE",
+        "projection.fecha.range": "2026-10-01,2026-10-03",
+        "classification": "csv",
+        "projection.fecha.interval": "1",
+        "projection.enabled": "true",
+        "projection.fecha.type": "date",
+        "storage.location.template": "s3://fp-examen-p1-entregas-XXXXXXXXXXXX/entregas/fecha=${fecha}/"
+    }
+}

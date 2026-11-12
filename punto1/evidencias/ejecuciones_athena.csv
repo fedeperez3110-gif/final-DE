@@ -1,0 +1,9 @@
+etapa,archivo_sql,id_ejecucion,archivo_resultado
+inicial,consultas/intentos_por_fecha_estado.sql,0d38b9ca-16ad-46dc-944f-531ca5cb003f,resultados/inicial/intentos_por_fecha_estado.csv
+inicial,consultas/porcentaje_exito_por_fecha_ciudad.sql,e90969e9-2cd2-447d-8dfd-b20d47a65b28,resultados/inicial/porcentaje_exito_por_fecha_ciudad.csv
+inicial,consultas/duracion_promedio_2026-10-02.sql,98a2a17f-7f3e-4b19-9a55-f322b75c130e,resultados/inicial/duracion_promedio_2026-10-02.csv
+final,consultas/verificacion_tercer_dia.sql,239fda06-1374-4624-bf8f-197ca05acec1,resultados/final/verificacion_tercer_dia.csv
+final,consultas/verificacion_tercer_dia.sql,9717ed6b-30c1-4a69-834f-dc0794503cd8,resultados/final/verificacion_estados_tercer_dia.csv
+final,consultas/verificacion_tercer_dia.sql,70d52cda-c394-4849-97d8-b8c84b86f120,resultados/final/verificacion_total_tabla.csv
+final,consultas/intentos_por_fecha_estado.sql,7e694524-8e7a-4f54-bdcd-00e5bcd51653,resultados/final/intentos_por_fecha_estado.csv
+final,consultas/porcentaje_exito_por_fecha_ciudad.sql,901ed686-f12a-43eb-b247-eccef2791a3d,resultados/final/porcentaje_exito_por_fecha_ciudad.csv
